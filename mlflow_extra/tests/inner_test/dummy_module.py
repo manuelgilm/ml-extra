@@ -8,6 +8,5 @@ def do_something():
 
 
 @log_code_path
-def do_something_else():
-    """Does something else."""
-    return 42
+def dummy_function():
+    return "dummy"

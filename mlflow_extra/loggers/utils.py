@@ -1,7 +1,8 @@
-from typing import Tuple 
-from typing import Dict 
+from typing import Tuple
+from typing import Dict
 
-def check_metrics(metrics:Dict[str, float])->bool:
+
+def check_metrics(metrics: Dict[str, float]) -> bool:
     """
     Check if the metrics are a dictionary with string keys and int/float values.
 
@@ -12,7 +13,8 @@ def check_metrics(metrics:Dict[str, float])->bool:
         return True
     return False
 
-def check_metric(metric:Tuple)->bool:
+
+def check_metric(metric: Tuple) -> bool:
     """
     Check if the metric is a tuple with a string key and an int/float value.
 
@@ -28,7 +30,8 @@ def check_metric(metric:Tuple)->bool:
         return True
     return False
 
-def check_params(params:Dict[str, str])->bool:
+
+def check_params(params: Dict[str, str]) -> bool:
     """
     Check if the params are a dictionary with string keys and string values.
 
@@ -39,7 +42,8 @@ def check_params(params:Dict[str, str])->bool:
         return True
     return False
 
-def check_param(param:Tuple)->bool:
+
+def check_param(param: Tuple) -> bool:
     """
     Check if the param is a tuple with a string key and a string value.
 
