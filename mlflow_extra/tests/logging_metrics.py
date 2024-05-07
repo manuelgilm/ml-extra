@@ -6,6 +6,8 @@ from mlflow_extra.tests.testing_functions import do_something_else
 from mlflow_extra.tests.inner_test.dummy_module import do_something as ds
 from mlflow_extra.tests.inner_test.dummy_module import dummy_function
 from mlflow_extra.tests.testing_classes import DummyClass
+from mlflow_extra.tests.testing_classes import DummyClass2
+from mlflow_extra.tests.inner_test.dummy_module import AnotherClass
 import mlflow
 
 import inspect
@@ -34,10 +36,16 @@ def main():
     # print(total)
     # print(type(inspect.getsource(get_or_create_experiment)))
     with mlflow.start_run(experiment_id=experiment.experiment_id):
-        # my_class = DummyClass()
-        # my_class.say_something("Hello")
-        # calculate_metrics()
-        # testing_function(1, 2)
+        my_class = DummyClass()
+        my_class.say_something("Hello")
+
+        my_class2 = DummyClass2()
+        my_class2.say_something("Hello")
+
+        another_class = AnotherClass()
+        another_class.say_something("Hello")
+        calculate_metrics()
+        testing_function(1, 2)
         do_something()
         do_something_else()
         ds()

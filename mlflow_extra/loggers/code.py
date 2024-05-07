@@ -11,19 +11,19 @@ def log_code(name: Optional[str] = None):
 
     if name.split(".")[-1] != "py" and name is not None:
         name += ".py"
-
+    
     def inner(func):
         """Log the code of the function passed as argument."""
+        if name is None:
+            name = func.__name__ + ".py"
 
         def wrapper(*args, **kwargs):
             run = mlflow.active_run()
             if run is None:
                 raise mlflow.exceptions.MlflowException("No active run found.")
+            
             code = inspect.getsource(func)
-            if name is not None:
-                mlflow.log_text(code, name)
-            else:
-                mlflow.log_text(code, func.__name__ + ".py")
+            mlflow.log_text(code, name)
 
         return wrapper
 
@@ -57,9 +57,17 @@ def log_class(cls):
         if run is None:
             raise mlflow.exceptions.MlflowException("No active run found.")
 
-        code = inspect.getsource(cls)
+        if check_logged_code(run, cls):
+            code = append_code(run, cls)
+        else:
+            code = inspect.getsource(cls)
+
         module_name = cls.__module__
         mlflow.log_text(code, module_name.replace(".", "/") + ".py")
+
+        # code = inspect.getsource(cls)
+        # module_name = cls.__module__
+        # mlflow.log_text(code, module_name.replace(".", "/") + ".py")
         orig_init(self, *args, **kws)
 
     cls.__init__ = __init__
