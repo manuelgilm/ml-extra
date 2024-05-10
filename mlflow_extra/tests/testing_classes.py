@@ -1,5 +1,4 @@
-from mlflow_extra.loggers.code import log_method
-from mlflow_extra.loggers.code import log_class
+from mlflow_extra.loggers.decorators.code import log_class
 
 from abc import ABC
 
@@ -12,6 +11,7 @@ class DummyClass(ABC):
 
     def say_something(self, something):
         print(something)
+
 
 @log_class
 class DummyClass2(ABC):

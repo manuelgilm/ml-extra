@@ -1,13 +1,14 @@
-from mlflow_extra.loggers.code import log_code_path
-from mlflow_extra.loggers.code import log_class
+from mlflow_extra.loggers.decorators.code import log_function_path
+from mlflow_extra.loggers.decorators.code import log_class
 
-@log_code_path
+
+@log_function_path
 def do_something():
     """Does something."""
     return 42
 
 
-@log_code_path
+@log_function_path
 def dummy_function():
     return "dummy"
 
@@ -29,3 +30,7 @@ class AnotherClass:
     def say_something_else2(self, something):
         print(something)
         return something
+
+
+def say_something():
+    print("Hello World!")

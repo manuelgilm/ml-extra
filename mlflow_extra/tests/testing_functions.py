@@ -1,13 +1,14 @@
-from mlflow_extra.loggers.code import log_code_path
+from mlflow_extra.loggers.decorators.code import log_function_path
+from mlflow_extra.loggers.decorators.code import log_module_function
+from mlflow_extra.loggers.decorators.code import log_function
 
-
-@log_code_path
+@log_function("custom_functions/do_something")
 def do_something():
     """Does something."""
     return 42
 
 
-@log_code_path
+@log_module_function
 def do_something_else():
     """Does something else."""
     return 42

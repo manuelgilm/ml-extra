@@ -1,16 +1,19 @@
 import mlflow
-from mlflow_extra.loggers.utils import check_metric
-from mlflow_extra.loggers.utils import check_metrics
-from mlflow_extra.loggers.utils import check_param
-from mlflow_extra.loggers.utils import check_params
+from mlflow_extra.loggers.decorators.utils import check_metric
+from mlflow_extra.loggers.decorators.utils import check_metrics
+from mlflow_extra.loggers.decorators.utils import check_param
+from mlflow_extra.loggers.decorators.utils import check_params
+from mlflow_extra.loggers.decorators.utils import check_run
+
+from functools import wraps
 
 
 def metric(func):
 
+    @wraps(func)
     def wrapper(*args, **kwargs):
-        run = mlflow.active_run()
-        if run is None:
-            raise mlflow.exceptions.MlflowException("No active run found.")
+        if not check_run():
+            return func(*args, **kwargs)
 
         result = func(*args, **kwargs)
 
@@ -22,15 +25,17 @@ def metric(func):
         else:
             raise Exception("Invalid metric format.")
 
+        return result
+
     return wrapper
 
 
 def param(func):
 
+    @wraps(func)
     def wrapper(*args, **kwargs):
-        run = mlflow.active_run()
-        if run is None:
-            raise mlflow.exceptions.MlflowException("No active run found.")
+        if not check_run():
+            return func(*args, **kwargs)
 
         result = func(*args, **kwargs)
 
@@ -41,5 +46,7 @@ def param(func):
             mlflow.log_param(key=result[0], value=result[1])
         else:
             raise Exception("Invalid param format.")
+
+        return result
 
     return wrapper
