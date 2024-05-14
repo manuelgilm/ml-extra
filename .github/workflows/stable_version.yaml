@@ -26,6 +26,6 @@ jobs:
       - name: Create git tag
         run: git tag ${{ steps.get_version.outputs.version }}
       - name: Push tag
-        run: git push origin ${{ steps.get_version.outputs.version }}
+        run: git push -u origin ${{ steps.get_version.outputs.version }}
       - name: Publish package
         run: poetry publish --build
