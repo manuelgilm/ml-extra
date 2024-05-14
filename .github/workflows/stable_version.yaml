@@ -9,7 +9,7 @@ jobs:
     name: Builds Using Poetry and Publishes to PyPI
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v2
       - name: Install Poetry
         run: curl -sSL https://install.python-poetry.org | python3 -
@@ -18,14 +18,25 @@ jobs:
       - run: poetry install
       - run: poetry run pytest
       - run: poetry config pypi-token.pypi "${{ secrets.PYPI_API_KEY }}"
-      - name: Create version tag
-        run: poetry version patch
-      - name: Get version
-        id: get_version
-        run: echo ::set-output name=version::$(poetry version -s)
-      - name: Create git tag
-        run: git tag ${{ steps.get_version.outputs.version }}
-      - name: Push tag
-        run: git push -u origin ${{ steps.get_version.outputs.version }}
+      # - name: Create version tag
+      #   run: poetry version patch
+      # - name: Get version
+      #   id: get_version
+      #   run: echo ::set-output name=version::$(poetry version -s)
+      # - name: Create git tag
+      #   run: git tag ${{ steps.get_version.outputs.version }}
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}        
+      # - name: Push tag
+      #   run: git push -u origin ${{ steps.get_version.outputs.version }}
       - name: Publish package
         run: poetry publish --build
