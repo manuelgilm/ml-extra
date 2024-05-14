@@ -1,6 +1,6 @@
-from mlflow_extra.loggers.decorators.utils import check_param
-from mlflow_extra.loggers.decorators.utils import check_params
-from mlflow_extra.loggers.decorators.utils import check_run
+from ml_extra.loggers.decorators.utils import check_param
+from ml_extra.loggers.decorators.utils import check_params
+from ml_extra.loggers.decorators.utils import check_run
 
 from functools import wraps
 import mlflow

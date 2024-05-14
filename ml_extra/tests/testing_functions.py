@@ -1,6 +1,6 @@
-from mlflow_extra.loggers.decorators.code import log_function_path
-from mlflow_extra.loggers.decorators.code import log_module_function
-from mlflow_extra.loggers.decorators.code import log_function
+from ml_extra.loggers.decorators.code import log_function_path
+from ml_extra.loggers.decorators.code import log_module_function
+from ml_extra.loggers.decorators.code import log_function
 
 @log_function("custom_functions/do_something")
 def do_something():

@@ -1,7 +1,7 @@
-from mlflow_extra.loggers.decorators.utils import check_run
-from mlflow_extra.loggers.decorators.utils import get_valid_artifact_path_for_modules
-from mlflow_extra.loggers.decorators.utils import check_logged_code
-from mlflow_extra.loggers.decorators.utils import append_code
+from ml_extra.loggers.decorators.utils import check_run
+from ml_extra.loggers.decorators.utils import get_valid_artifact_path_for_modules
+from ml_extra.loggers.decorators.utils import check_logged_code
+from ml_extra.loggers.decorators.utils import append_code
 import inspect
 import mlflow
 

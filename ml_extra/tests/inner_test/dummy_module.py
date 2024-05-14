@@ -1,5 +1,5 @@
-from mlflow_extra.loggers.decorators.code import log_function_path
-from mlflow_extra.loggers.decorators.code import log_class
+from ml_extra.loggers.decorators.code import log_function_path
+from ml_extra.loggers.decorators.code import log_class
 
 
 @log_function_path

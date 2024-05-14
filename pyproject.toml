@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "mlflow-extra"
+name = "ml-extra"
 version = "0.1.0"
 description = ""
 authors = ["Manuel Gil <manuelgilsitio@gmail.com>"]
@@ -14,8 +14,8 @@ jupyter = "^1.0.0"
 pytest = "^8.2.0"
 
 [tool.poetry.scripts]
-test = 'mlflow_extra.tests.logging_metrics:main'
-test2 = 'mlflow_extra.tests.logging_metrics:main2'
+test = 'ml_extra.tests.logging_metrics:main'
+test2 = 'ml_extra.tests.logging_metrics:main2'
 
 [build-system]
 requires = ["poetry-core"]

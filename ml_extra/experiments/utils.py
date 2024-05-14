@@ -1,4 +1,4 @@
-from mlflow_extra.utils.utils import get_root_path
+from ml_extra.utils.utils import get_root_path
 
 import mlflow
 from mlflow.entities import Experiment

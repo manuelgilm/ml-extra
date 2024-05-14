@@ -1,18 +1,18 @@
-from mlflow_extra.experiments.utils import get_or_create_experiment
-from mlflow_extra.loggers.decorators.metrics import metric
-from mlflow_extra.loggers.decorators.code import log_function
-from mlflow_extra.loggers.decorators.code import log_function_path
-from mlflow_extra.loggers.decorators.code import log_module_source
-from mlflow_extra.tests.testing_functions import do_something
-from mlflow_extra.tests.testing_functions import do_something_else
-from mlflow_extra.tests.inner_test.dummy_module import do_something as ds
-from mlflow_extra.tests.inner_test.dummy_module import dummy_function
-from mlflow_extra.tests.testing_classes import DummyClass
-from mlflow_extra.tests.testing_classes import DummyClass2
-from mlflow_extra.tests.inner_test.dummy_module import AnotherClass
-from mlflow_extra.tests.inner_test import dummy_module
+from ml_extra.experiments.utils import get_or_create_experiment
+from ml_extra.loggers.decorators.metrics import metric
+from ml_extra.loggers.decorators.code import log_function
+from ml_extra.loggers.decorators.code import log_function_path
+from ml_extra.loggers.decorators.code import log_module_source
+from ml_extra.tests.testing_functions import do_something
+from ml_extra.tests.testing_functions import do_something_else
+from ml_extra.tests.inner_test.dummy_module import do_something as ds
+from ml_extra.tests.inner_test.dummy_module import dummy_function
+from ml_extra.tests.testing_classes import DummyClass
+from ml_extra.tests.testing_classes import DummyClass2
+from ml_extra.tests.inner_test.dummy_module import AnotherClass
+from ml_extra.tests.inner_test import dummy_module
 import mlflow
-from mlflow_extra.loggers.decorators import code
+from ml_extra.loggers.decorators import code
 import inspect
 from typing import Optional
 import time
