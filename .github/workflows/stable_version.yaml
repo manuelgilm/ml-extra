@@ -1,7 +1,8 @@
 name: Publish to PyPI
-on:
-  release:
-    types: [published]
+on: 
+  pull_request:
+    branches:
+      - master
 
 jobs:
   pypi_release:
@@ -17,5 +18,14 @@ jobs:
       - run: poetry install
       - run: poetry run pytest
       - run: poetry config pypi-token.pypi "${{ secrets.PYPI_API_KEY }}"
+      - name: Create version tag
+        run: poetry version patch
+      - name: Get version
+        id: get_version
+        run: echo ::set-output name=version::$(poetry version -s)
+      - name: Create git tag
+        run: git tag ${{ steps.get_version.outputs.version }}
+      - name: Push tag
+        run: git push origin ${{ steps.get_version.outputs.version }}
       - name: Publish package
         run: poetry publish --build
