@@ -1,8 +1,11 @@
-from typing import Union 
+from typing import Union
 from typing import Tuple
 from typing import Union
+from typing import Any
+from typing import Dict
 from pathlib import Path
 from datetime import datetime
+
 
 def get_root_path() -> Path:
     """
@@ -14,7 +17,7 @@ def get_root_path() -> Path:
 def encode_file(name: Union[Path, str]) -> str:
     """
     Encode a name with a timestamp.
-    
+
     :param name: Name to encode.
     :return: Encoded name.
     """
@@ -28,6 +31,7 @@ def encode_file(name: Union[Path, str]) -> str:
     name = name.stem
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     return f"{name}_{timestamp}{suffix}"
+
 
 def decode_filename(name: Union[str, Path]) -> Tuple[str, datetime]:
     """
@@ -43,6 +47,43 @@ def decode_filename(name: Union[str, Path]) -> Tuple[str, datetime]:
     name_comp = name.split("_")
     name = "_".join(name_comp[:-1]) + filename.suffix
     timestamp = name_comp[-1]
-    
+
     timestamp = datetime.strptime(timestamp, "%Y%m%d%H%M%S")
     return name, timestamp
+
+
+def add_prefix_to_dictionary_keys(
+    dictionary: Dict[str, Any], prefix: str
+) -> Dict[str, Any]:
+    """
+    Add a prefix to the keys of a dictionary.
+
+    :param dictionary: Dictionary.
+    :param prefix: Prefix to add.
+    :return: Dictionary with the prefix.
+    """
+    return {f"{prefix}_{key}": value for key, value in dictionary.items()}
+
+
+def add_path_to_dictionary_keys(
+    dictionary: Dict[str, Any], path: str
+) -> Dict[str, Any]:
+    """
+    Add a path to the keys of a dictionary.
+
+    :param dictionary: Dictionary.
+    :param path: Path to add.
+    :return: Dictionary with the path.
+    """
+    if isinstance(path, Path):
+        path = str(path)
+
+    if not path.endswith("/"):
+        # add the / at the end
+        path = path + "/"
+    
+    if path.startswith("/"):
+        # remove the / from the start
+        path = path[1:]
+        
+    return {path + key: value for key, value in dictionary.items()}
