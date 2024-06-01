@@ -81,9 +81,9 @@ def add_path_to_dictionary_keys(
     if not path.endswith("/"):
         # add the / at the end
         path = path + "/"
-    
+
     if path.startswith("/"):
         # remove the / from the start
         path = path[1:]
-        
+
     return {path + key: value for key, value in dictionary.items()}

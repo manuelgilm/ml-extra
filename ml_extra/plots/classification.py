@@ -61,6 +61,7 @@ def get_precision_recall_curve(
     )
     return pr_display.figure_
 
+
 def get_confusion_matrix(
     y_true: Union[pd.Series, np.ndarray],
     y_pred: Union[pd.Series, np.ndarray],
@@ -79,7 +80,5 @@ def get_confusion_matrix(
     __check_binary_classification(y_true, y_pred)
 
     plt.figure(figsize=figsize)
-    cm_display = ConfusionMatrixDisplay.from_predictions(
-        y_true, y_pred, ax=plt.gca()
-    )
+    cm_display = ConfusionMatrixDisplay.from_predictions(y_true, y_pred, ax=plt.gca())
     return cm_display.figure_

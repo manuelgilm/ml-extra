@@ -27,13 +27,19 @@ def log_classification_artifacts(
     """
     figure_dict = {
         "roc_curve.png": get_roc_curve(y_true, y_pred, figsize=figsize),
-        "precision_recall_curve.png": get_precision_recall_curve(y_true, y_pred, figsize=figsize),
+        "precision_recall_curve.png": get_precision_recall_curve(
+            y_true, y_pred, figsize=figsize
+        ),
         "confusion_matrix.png": get_confusion_matrix(y_true, y_pred, figsize=figsize),
     }
-    
+
     if prefix:
-        figure_dict = add_prefix_to_dictionary_keys(dictionary=figure_dict,prefix= prefix)
+        figure_dict = add_prefix_to_dictionary_keys(
+            dictionary=figure_dict, prefix=prefix
+        )
     if artifact_path:
-        figure_dict = add_path_to_dictionary_keys(dictionary=figure_dict, path=artifact_path)
+        figure_dict = add_path_to_dictionary_keys(
+            dictionary=figure_dict, path=artifact_path
+        )
 
     return figure_dict
