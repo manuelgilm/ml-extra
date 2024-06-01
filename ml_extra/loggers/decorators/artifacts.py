@@ -32,6 +32,8 @@ def log_figures(func):
 def log_yaml(artifact_path: str):
     """
     Log the dictionary returned by the decorated function as a yaml file.
+
+    :param artifact_path: The artifact path.
     """
     if artifact_path and not isfunction(artifact_path):
         artifact_path = get_valid_artifact_path_for_yaml(artifact_path)
@@ -56,6 +58,8 @@ def log_yaml(artifact_path: str):
 def log_json(artifact_path: str):
     """
     Log the dictionary returned by the decorated function as a json file.
+
+    :param  artifact_path: The path to the artifact.
     """
     if artifact_path and not isfunction(artifact_path):
         artifact_path = get_valid_artifact_path_for_json(artifact_path)
