@@ -13,6 +13,7 @@ ipython = "^8.24.0"
 jupyter = "^1.0.0"
 pytest = "^8.2.0"
 coverage = "^7.5.3"
+setuptools = "^70.0.0"
 
 [tool.poetry.scripts]
 test = 'ml_extra.tests.logging_metrics:main'
