@@ -3,6 +3,8 @@ from ml_extra.loggers.decorators.metrics import metric
 from ml_extra.loggers.decorators.code import log_function
 from ml_extra.loggers.decorators.code import log_function_path
 from ml_extra.loggers.decorators.code import log_module_source
+from ml_extra.loggers.decorators.artifacts import log_yaml
+from ml_extra.loggers.decorators.artifacts import log_json
 from ml_extra.tests.testing_functions import do_something
 from ml_extra.tests.testing_functions import do_something_else
 from ml_extra.tests.inner_test.dummy_module import do_something as ds
@@ -97,6 +99,14 @@ def main2():
     # from mlflow_extra.tests.inner_test.dummy_module import do_something as ds
 
 
+@log_yaml("configs/config.yml")
+def return_config():
+    return {"a": 1, "b": 2, "c": 3, "d": {"e": 4, "f": 5}}
+
+@log_json("configs/config.json")
+def return_config2():
+    return {"a": 1, "b": 2, "c": 3, "d": {"e": 4, "f": 5}}
+
 def main():
     # print(inspect.getabsfile(dummy_module))
     # print(inspect.getsourcefile(dummy_module))
@@ -113,24 +123,18 @@ def main():
 
     # print(total)
     # print(type(inspect.getsource(get_or_create_experiment)))
-
     with mlflow.start_run(experiment_id=experiment.experiment_id) as run:
-        custom_metric = calculate_metrics()
-        result = testing_function(1, 2)
-        print(result)
-        my_class = DummyClass()
-        my_class.say_something("Hello")
-
-        my_class2 = DummyClass2()
-        my_class2.say_something("Hello")
-
-    #     another_class = AnotherClass()
-    #     another_class.say_something("Hello")
-    #     calculate_metrics()
-    #     testing_function(1, 2)
-        do_something()
-        do_something_else()
-        log_module_source(code)
-
-    #     ds()
-    #     dummy_function()
+        # custom_metric = calculate_metrics()
+        # result = testing_function(1, 2)
+        # print(result)
+        # my_class = DummyClass()
+        # my_class.say_something("Hello")
+        config = return_config2()
+        print(config)
+        # my_class2 = DummyClass2()
+        # my_class2.say_something("Hello")
+        # config = return_config()
+        # print(config)
+        # do_something()
+        # do_something_else()
+        # log_module_source(code)

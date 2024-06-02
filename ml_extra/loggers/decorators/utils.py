@@ -6,7 +6,16 @@ import tempfile
 from pathlib import Path
 import inspect
 
+def check_valid_json(json: Dict) -> bool:
+    """
+    Check if the json is a dictionary with string keys and string values.
 
+    :param json: The json to check.
+    :return: True if the json is a dictionary with string keys and string values, False otherwise.
+    """
+    if isinstance(json, dict) and all(isinstance(k, str) for k in json.keys()):
+        return True
+    return False
 def check_metrics(metrics: Dict[str, float]) -> bool:
     """
     Check if the metrics are a dictionary with string keys and int/float values.
@@ -99,6 +108,36 @@ def get_valid_artifact_path_for_modules(artifact_path: str) -> str:
 
     if not artifact_path.endswith(".py"):
         return artifact_path.replace(".", "/") + ".py"
+    return artifact_path
+
+def get_valid_artifact_path_for_json(artifact_path: str) -> str:
+    """
+    Get a valid artifact path for a json file.
+
+    :param artifact_path: The artifact path.
+    :return: A valid artifact path for a json file.
+    """
+    if not isinstance(artifact_path, str):
+        raise TypeError("The artifact path must be a string.")
+    suffix = artifact_path.split(".")[-1]
+    if not suffix in ["json"]:
+        return artifact_path + ".json"
+
+    return artifact_path
+
+def get_valid_artifact_path_for_yaml(artifact_path: str) -> str:
+    """
+    Get a valid artifact path for a yaml file.
+
+    :param artifact_path: The artifact path.
+    :return: A valid artifact path for a yaml file.
+    """
+    if not isinstance(artifact_path, str):
+        raise TypeError("The artifact path must be a string.")
+    suffix = artifact_path.split(".")[-1]
+    if not suffix in ["yaml", "yml"]:
+        return artifact_path + ".yaml"
+
     return artifact_path
 
 
