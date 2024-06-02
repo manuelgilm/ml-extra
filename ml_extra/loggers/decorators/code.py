@@ -82,6 +82,7 @@ def log_class(cls):
 
     return cls
 
+
 def log_module_function(func):
     """
     Log the code of the module passed as argument.
@@ -100,7 +101,8 @@ def log_module_function(func):
 
     return wrapper
 
-def log_module_source(module)->None:
+
+def log_module_source(module) -> None:
     """
     Log the code of the module passed as argument.
     """
