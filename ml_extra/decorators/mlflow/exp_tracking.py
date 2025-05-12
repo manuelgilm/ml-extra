@@ -49,7 +49,6 @@ def mlflow_client(func):
     """
     Decorator to pass the MLflow client as argument to the function.
     """
-
     def wrapper(*args, **kwargs):
         print("Setting MLflow client...")
         mlflow_client = mlflow.MlflowClient()
