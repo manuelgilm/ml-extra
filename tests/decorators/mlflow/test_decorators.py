@@ -1,4 +1,5 @@
 from ml_extra.decorators.mlflow.exp_tracking import mlflow_experiment 
+from ml_extra.decorators.mlflow.exp_tracking import mlflow_client
 import mlflow 
 
 @mlflow_experiment(name="TEST-EXPERIMENT")
@@ -40,3 +41,11 @@ def test_create_experiment_with_tags_no_return_experiment(**kwargs):
     # check experiment is created
     mlflow_experiment = mlflow.get_experiment_by_name("TEST-EXPERIMENT-NO-EXPERIMENT")
     assert mlflow_experiment.name == "TEST-EXPERIMENT-NO-EXPERIMENT"
+
+@mlflow_client
+def test_create_experiment_with_client(**kwargs):
+    """
+    Function checks if the client is passed 
+    """
+    mlflow_client = kwargs.get("mlflow_client", None)
+    assert mlflow_client is not None
