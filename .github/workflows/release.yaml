@@ -1,8 +1,14 @@
 name: Publish to PyPI
-on: 
-  pull_request:
-    branches:
-      - master
+on:
+  workflow_run:
+    workflows: ["CI"]
+    branches: [master]
+    types: 
+      - completed
+# on: 
+#   pull_request:
+#     branches:
+#       - master
 
 jobs:
   pypi_release:
