@@ -2,7 +2,7 @@ name: Publish to PyPI
 on: 
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   pypi_release:
