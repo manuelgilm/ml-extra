@@ -4,6 +4,9 @@ on:
     types: [opened, reopened]
     branches:
       - master
+  push:
+    branches:
+      - develop
 jobs:
   test:
     runs-on: ubuntu-latest
