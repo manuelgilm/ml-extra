@@ -7,7 +7,7 @@ from typing import Optional
 from typing import Dict
 
 
-def mlflow_experiment(name: str, tags: Optional[Dict[str, str]] = None):
+def mlflow_experiment(name: str, tags: Optional[Dict[str, str]] = None, return_experiment: bool = False):
     """
     Decorator to set the MLflow experiment name and tags.
     This decorator creates a new experiment if it doesn't exist.
@@ -16,10 +16,11 @@ def mlflow_experiment(name: str, tags: Optional[Dict[str, str]] = None):
 
     :param name: The name of the MLflow experiment.
     :param tags: A dictionary of tags to associate with the experiment.
+    :param return_experiment: If True, the decorated function will return the experiment object.
     :return: A decorator function that sets the MLflow experiment.
     """
 
-    def decorator(func, name=name, tags=tags):
+    def decorator(func, name=name, tags=tags, return_experiment=return_experiment):
         """
         Decorator function to set the MLflow experiment name and tags.
         It creates a new experiment if it doesn't exist.
@@ -35,11 +36,12 @@ def mlflow_experiment(name: str, tags: Optional[Dict[str, str]] = None):
         def wrapper(*args, **kwargs):
             print(f"Setting MLflow experiment: {name}")
             experiment = get_or_create_experiment(name=name, tags=tags)
-            kwargs["mlflow_experiment"] = experiment
+            if return_experiment:
+                kwargs["mlflow_experiment"] = experiment            
             return func(*args, **kwargs)
-
+        
         return wrapper
-
+    
     return decorator
 
 
