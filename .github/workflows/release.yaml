@@ -11,10 +11,13 @@ on:
 #       - master
 
 jobs:
+  tests:
+    uses: ./.github/workflows/tests.yml
   pypi_release:
     name: Builds Using Poetry and Publishes to PyPI
     permissions: write-all
     runs-on: ubuntu-latest
+    needs: [tests]
 
     steps:
       - uses: actions/checkout@v4
