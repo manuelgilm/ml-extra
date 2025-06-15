@@ -69,7 +69,7 @@ def mlflow_tracking_uri(func):
             print("MLFLOW_TRACKING_URI not set. Using default local file system.")
             current_directory = Path.cwd() / "mlruns"
             mlflow.set_tracking_uri(current_directory.as_uri())
-        else:
+        elif not mlflow.get_tracking_uri() and mlflow_tracking_uri:
             print(f"Using MLFLOW_TRACKING_URI: {mlflow_tracking_uri}")
             tracking_uri_path = Path(mlflow_tracking_uri)
             mlflow.set_tracking_uri(tracking_uri_path.as_uri())
